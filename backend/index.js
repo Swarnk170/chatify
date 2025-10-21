@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -17,6 +18,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "5MB" }));
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
