@@ -30,6 +30,10 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+app.get("/test", (_, res) => {
+  res.send("API is working fine");
+});
+
 app.listen(PORT, () => {
   connectdb();
   console.log(`Server is running on port ${PORT}`);
