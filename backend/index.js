@@ -7,10 +7,9 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { connectdb } from "./lib/db.js";
 import cookieParser from "cookie-parser";
+import { app, server } from "./lib/socket.js";
 
 dotenv.config();
-
-const app = express();
 
 const __dirname = path.resolve();
 
@@ -41,7 +40,7 @@ app.get("/test", (_, res) => {
   res.send("API is working fine");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectdb();
   console.log(`Server is running on port ${PORT}`);
 });
